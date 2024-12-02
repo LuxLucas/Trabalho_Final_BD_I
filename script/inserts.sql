@@ -15,7 +15,11 @@ INSERT INTO [Aluno] ([nm], [cpf], [email], [dt_nasc]) VALUES
 ('Ana Costa', '45678901234', 'ana.costa@email.com', '1997-04-04'),
 ('Paulo Pereira', '56789012345', 'paulo.pereira@email.com', '1996-05-05'),
 ('Fernanda Lima', '67890123456', 'fernanda.lima@email.com', '1995-06-06'),
-('Ricardo Souza', '78901234567', 'ricardo.souza@email.com', '1994-07-07');
+('Ricardo Souza', '78901234567', 'ricardo.souza@email.com', '1994-07-07'),
+
+/*1. Alunos com matrícula inativa com parcelas pendentes*/
+('Eduardo Teixeira Da Rosa', '56789012336', 'eduardo.rosa@email.com', '1989-04-01'), /*8*/
+('Samara Constante Dos Santos', '98341012336', 'eduardo.rosa@email.com', '1989-04-01'); /*9*/
 
 
 INSERT INTO [Estado] ([uf]) VALUES 
@@ -40,13 +44,17 @@ INSERT INTO [Cidade] ([nm], [id_estado]) VALUES
 
 
 INSERT INTO [Endereco] ([id_aluno], [id_cidade], [bairro], [logradouro]) VALUES 
-(1, 1, 'Centro', 'Rua A, 100'),
-(2, 2, 'Zona Sul', 'Avenida B, 200'),
-(3, 3, 'Centro', 'Rua C, 300'),
-(4, 4, 'Barra', 'Avenida D, 400'),
-(5, 5, 'Centro', 'Rua E, 500'),
-(6, 6, 'Aldeota', 'Rua F, 600'),
-(7, 7, 'Centro', 'Rua G, 700');
+(1, 1, 'Centro', 'Rua A'),
+(2, 2, 'Zona Sul', 'Avenida B'),
+(3, 3, 'Centro', 'Rua C'),
+(4, 4, 'Barra', 'Avenida D'),
+(5, 5, 'Centro', 'Rua E'),
+(6, 6, 'Aldeota', 'Rua F'),
+(7, 7, 'Centro', 'Rua G'),
+
+/*1. Endereço dos alunos com matrícula inativa com parcelas pendentes*/
+(8, 3, 'Ciclops', 'Rua Monóculos'),
+(9, 2, 'Heholder', 'Avenida XZY');
 
 
 INSERT INTO [Co_Signatario] ([nm], [cpf], [email], [dt_nasc]) VALUES 
@@ -66,7 +74,11 @@ INSERT INTO [Conta_Bancaria] ([id_banco], [id_aluno], [agencia], [tp_conta], [nu
 (4, 4, '1121', 5, '45678901'),
 (5, 5, '3141', 1, '56789012'),
 (6, 6, '5161', 4, '67890123'),
-(7, 7, '7181', 2, '78901234');
+(7, 7, '7181', 2, '78901234'),
+
+/*1. Conta bancária dos alunos com matrícula inativa com parcelas pendentes*/
+(3, 8, '1234', 1, '78579234'),
+(6, 9, '8934', 1, '09356234');
 
 
 INSERT INTO [Faculdade] ([nm], [cnpj], [email]) VALUES 
@@ -93,10 +105,15 @@ INSERT INTO [Matricula] ([id_aluno], [matricula], [id_curso], [ativo], [bolsa]) 
 (2, '20240001', 1, 1, 50),
 (5, '20240002', 2, 1, 25),
 (1, '20240003', 3, DEFAULT, DEFAULT),
-(6, '20240004', 4, 1, 100),
+(6, '20240004', 4, 1, 20),
 (3, '20240005', 5, 1, 40),
 (4, '20240006', 6, DEFAULT, DEFAULT),
-(7, '20240007', 7, 1, 30);
+(7, '20240007', 7, 1, 30),
+
+/*1. Matrícula dos alunos com matrícula inativa com parcelas pendentes*/
+(8, '20240008', 6, DEFAULT, DEFAULT),
+(9, '20240009', 4, DEFAULT, 50);
+
 
 
 INSERT INTO [Emprestimo] ([id_cosig], [id_conta_bancaria], [vl_emprestimo], [dt_prazo], [dt_emprestimo], [parc], [juros], [dt_baixa]) VALUES 
@@ -106,7 +123,11 @@ INSERT INTO [Emprestimo] ([id_cosig], [id_conta_bancaria], [vl_emprestimo], [dt_
 (4, 4, 2000.00, '2024-03-20', '2023-09-20', 6, 4, '2024-02-23'),
 (5, 5, 7000.00, '2025-09-18', '2023-09-01', 24, 3.5, '2024-06-02'),
 (6, 6, 1500.00, '2022-03-30', '2021-07-01', 8, 5, '2022-03-17'),
-(7, 7, 25830.00, '2026-06-03', '2019-06-01', 12, 2, NULL);
+(7, 7, 25830.00, '2026-06-03', '2019-06-01', 12, 2, NULL),
+
+/*1. Empréstimo dos alunos com matrícula inativa com parcelas pendentes*/
+(3, 8, 5000, '2025-07-25', '2024-07-15', 12, 1.5, NULL),
+(5, 9, 10000, '2025-11-15', '2024-06-23', 7, 1.78, NULL);
 
 
 INSERT INTO [Parcela] ([id_emprestimo], [dt_prazo], [dt_baixa], [vl_parc]) VALUES 
@@ -118,6 +139,10 @@ INSERT INTO [Parcela] ([id_emprestimo], [dt_prazo], [dt_baixa], [vl_parc]) VALUE
 (5, '2024-12-13', '2024-12-13', 361.67),
 
 /*Parcelas atrasadas*/
-(4, '2024-02-18','2024-03-04',413.34),
-(5, '2024-04-01', '2024-06-02', 361.67),
-(6, '2022-02-28', '2022-03-21', 262.50);
+(4, '2024-02-18','2024-03-04', NULL, 413.34),
+(5, '2024-04-01', '2024-06-02', NULL, 361.67),
+(6, '2022-02-28', '2022-03-21', NULL, 262.50),
+
+/*1. Parcelas dos alunos com matrícula inativa com parcelas pendentes*/
+(8, '2025-02-20', NULL, 341,67),
+(9, '2025-01-10', NULL, 1250.57);
