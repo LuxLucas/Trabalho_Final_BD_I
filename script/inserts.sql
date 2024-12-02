@@ -19,7 +19,7 @@ INSERT INTO [Aluno] ([nm], [cpf], [email], [dt_nasc]) VALUES
 
 /*1. Alunos com matrícula inativa com parcelas pendentes*/
 ('Eduardo Teixeira Da Rosa', '56789012336', 'eduardo.rosa@email.com', '1989-04-01'), /*8*/
-('Samara Constante Dos Santos', '98341012336', 'eduardo.rosa@email.com', '1989-04-01'); /*9*/
+('Samara Constante Dos Santos', '98341012336', 'samara.santos@email.com', '1989-04-01'); /*9*/
 
 
 INSERT INTO [Estado] ([uf]) VALUES 
@@ -69,16 +69,18 @@ INSERT INTO [Co_Signatario] ([nm], [cpf], [email], [dt_nasc]) VALUES
 
 INSERT INTO [Conta_Bancaria] ([id_banco], [id_aluno], [agencia], [tp_conta], [num_conta]) VALUES 
 (1, 1, '1234', 1, '12345678'),
-(2, 2, '5678', 2, '23456789'),                                                                                         
-(3, 3, '9101', 4, '34567890'),
+(2, 2, '5678', 2, '23456789'),                                                                                        
 (4, 4, '1121', 5, '45678901'),
 (5, 5, '3141', 1, '56789012'),
 (6, 6, '5161', 4, '67890123'),
-(7, 7, '7181', 2, '78901234'),
 
 /*1. Conta bancária dos alunos com matrícula inativa com parcelas pendentes*/
 (3, 8, '1234', 1, '78579234'),
-(6, 9, '8934', 1, '09356234');
+(6, 9, '8934', 1, '09356234'),
+
+/*6. Contas bancárias do Bradesco*/
+(4, 7, '7181', 2, '78901234'),/*8*/
+(4, 3, '9101', 4, '34567890');/*9*/
 
 
 INSERT INTO [Faculdade] ([nm], [cnpj], [email]) VALUES 
@@ -149,10 +151,10 @@ INSERT INTO [Parcela] ([id_emprestimo], [dt_prazo], [dt_baixa], [vl_parc]) VALUE
 (5, '2024-12-13', '2024-12-13', 361.67),
 
 /*1. Parcelas dos alunos com matrícula inativa com parcelas pendentes*/
-(8, '2025-02-20', NULL, 341,67),
+(8, '2025-02-20', NULL, 341.67),
 (9, '2025-01-10', NULL, 1250.57),
 
 /*2. Parcelas atrasadas*/
-(4, '2024-02-18','2024-03-04', NULL, 413.34),
-(5, '2024-04-01', '2024-06-02', NULL, 361.67),
-(6, '2022-02-28', '2022-03-21', NULL, 262.50);
+(4, '2024-02-18', NULL, 413.34),
+(5, '2024-04-01', NULL, 361.67),
+(6, '2022-02-28', NULL, 262.50);
