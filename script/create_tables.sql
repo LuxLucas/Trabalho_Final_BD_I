@@ -164,5 +164,9 @@ ADD CONSTRAINT df_ativo DEFAULT 0 FOR ativo
 GO
 
 ALTER TABLE matricula
+ADD CONSTRAINT chk_bolsa CHECK (bolsa BETWEEN 0 AND 100)
+GO
+
+ALTER TABLE matricula
 ADD CONSTRAINT df_bolsa DEFAULT 0 FOR bolsa
 GO
