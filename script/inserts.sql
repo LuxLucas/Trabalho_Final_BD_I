@@ -82,7 +82,7 @@ INSERT INTO [Faculdade] ([nm], [cnpj], [email]) VALUES
 INSERT INTO [Curso] ([id_faculdade], [nm], [vl_mensal]) VALUES 
 (1, 'Administração', 1200.50),
 (6, 'Engenharia de Computação', 1500.75),
-(7, 'Medicina', 2500.00),
+(7, 'Medicina', 5000.00),
 (3, 'Direito', 1800.25),
 (2, 'Arquitetura', 1600.80),
 (4, 'Psicologia', 1400.60),
@@ -94,7 +94,7 @@ INSERT INTO [Matricula] ([id_aluno], [matricula], [id_curso], [ativo], [bolsa]) 
 (5, '20240002', 2, 1, 25),
 (1, '20240003', 3, DEFAULT, DEFAULT),
 (6, '20240004', 4, 1, 100),
-(3, '20240005', 5, 1, 75),
+(3, '20240005', 5, 1, 40),
 (4, '20240006', 6, DEFAULT, DEFAULT),
 (7, '20240007', 7, 1, 30);
 
@@ -114,6 +114,10 @@ INSERT INTO [Parcela] ([id_emprestimo], [dt_prazo], [dt_baixa], [vl_parc]) VALUE
 (2, '2025-02-01', NULL, 390.00),
 (3, '2030-06-15', NULL, 944.45),
 (4, '2023-11-09', '2023-10-09', 413.34),
+(7, '2025-10-01', NULL, 2669.10),
+(5, '2024-12-13', '2024-12-13', 361.67),
+
+/*Parcelas atrasadas*/
+(4, '2024-02-18','2024-03-04',413.34),
 (5, '2024-04-01', '2024-06-02', 361.67),
-(6, '2022-02-28', '2022-03-21', 262.50),
-(7, '2025-10-01', NULL, 2669.10);
+(6, '2022-02-28', '2022-03-21', 262.50);
