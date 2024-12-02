@@ -96,38 +96,48 @@ INSERT INTO [Curso] ([id_faculdade], [nm], [vl_mensal]) VALUES
 (6, 'Engenharia de Computação', 1500.75),
 (7, 'Medicina', 5000.00),
 (3, 'Direito', 1800.25),
-(2, 'Arquitetura', 1600.80),
 (4, 'Psicologia', 1400.60),
-(5, 'Educação Física', 1000.00);
+(5, 'Educação Física', 1000.00),
+
+/*5. Cursos da Faculdade de Engenharia*/
+(2, 'Arquitetura', 1600.80), /*7*/
+(2, 'Engenharia Elétrica', 1890.50); /*8*/
 
 
 INSERT INTO [Matricula] ([id_aluno], [matricula], [id_curso], [ativo], [bolsa]) VALUES 
 (2, '20240001', 1, 1, 50),
-(5, '20240002', 2, 1, 25),
 (1, '20240003', 3, DEFAULT, DEFAULT),
 (6, '20240004', 4, 1, 20),
-(3, '20240005', 5, 1, 40),
 (4, '20240006', 6, DEFAULT, DEFAULT),
-(7, '20240007', 7, 1, 30),
 
 /*1. Matrícula dos alunos com matrícula inativa com parcelas pendentes*/
 (8, '20240008', 6, DEFAULT, DEFAULT),
-(9, '20240009', 4, DEFAULT, 50);
+(9, '20240009', 4, DEFAULT, 50),
 
+/*3. Matrículas com empréstimo que possuem tempo de carência*/
+(7, '20240007', 7, 1, 30),
+(3, '20240005', 5, 1, 40),
 
+/*5. Matrículas ativas ou inativas da Faculdade de Engenharia onde o aluno já realizou um empréstimo*/
+(5, '20220001', 7, DEFAULT, DEFAULT),
+(6, '20220003', 8, DEFAULT, DEFAULT);
 
 INSERT INTO [Emprestimo] ([id_cosig], [id_conta_bancaria], [vl_emprestimo], [dt_prazo], [dt_emprestimo], [parc], [juros], [dt_baixa]) VALUES 
 (1, 1, 5000.00, '2025-12-01', DEFAULT, 12, 1.5, NULL),
 (2, 2, 3000.00, '2025-12-01', DEFAULT,10, 3, NULL),
-(3, 3, 12500.00, '2030-06-15', DEFAULT, 18, 2, NULL),   
-(4, 4, 2000.00, '2024-03-20', '2023-09-20', 6, 4, '2024-02-23'),
-(5, 5, 7000.00, '2025-09-18', '2023-09-01', 24, 3.5, '2024-06-02'),
-(6, 6, 1500.00, '2022-03-30', '2021-07-01', 8, 5, '2022-03-17'),
-(7, 7, 25830.00, '2026-06-03', '2019-06-01', 12, 2, NULL),
 
 /*1. Empréstimo dos alunos com matrícula inativa com parcelas pendentes*/
 (3, 8, 5000, '2025-07-25', '2024-07-15', 12, 1.5, NULL),
-(5, 9, 10000, '2025-11-15', '2024-06-23', 7, 1.78, NULL);
+(5, 9, 10000, '2025-11-15', '2024-06-23', 7, 1.78, NULL),
+
+/*3. Empréstimos com tempo de carência*/
+(7, 7, 25830.00, '2026-06-03', '2019-06-01', 12, 2, NULL),
+(3, 3, 12500.00, '2030-06-15', DEFAULT, 18, 2, NULL),
+
+/*4. Enpréstimos ativos*/
+(4, 4, 2000.00, '2024-03-20', '2023-09-20', 6, 4, '2024-02-23'),
+(5, 5, 7000.00, '2025-09-18', '2023-09-01', 24, 3.5, '2024-06-02'),
+(6, 6, 1500.00, '2022-03-30', '2021-07-01', 8, 5, '2022-03-17');
 
 
 INSERT INTO [Parcela] ([id_emprestimo], [dt_prazo], [dt_baixa], [vl_parc]) VALUES 
@@ -138,11 +148,11 @@ INSERT INTO [Parcela] ([id_emprestimo], [dt_prazo], [dt_baixa], [vl_parc]) VALUE
 (7, '2025-10-01', NULL, 2669.10),
 (5, '2024-12-13', '2024-12-13', 361.67),
 
-/*Parcelas atrasadas*/
-(4, '2024-02-18','2024-03-04', NULL, 413.34),
-(5, '2024-04-01', '2024-06-02', NULL, 361.67),
-(6, '2022-02-28', '2022-03-21', NULL, 262.50),
-
 /*1. Parcelas dos alunos com matrícula inativa com parcelas pendentes*/
 (8, '2025-02-20', NULL, 341,67),
-(9, '2025-01-10', NULL, 1250.57);
+(9, '2025-01-10', NULL, 1250.57),
+
+/*2. Parcelas atrasadas*/
+(4, '2024-02-18','2024-03-04', NULL, 413.34),
+(5, '2024-04-01', '2024-06-02', NULL, 361.67),
+(6, '2022-02-28', '2022-03-21', NULL, 262.50);
